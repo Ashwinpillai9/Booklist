@@ -1,0 +1,80 @@
+#include<stdio.h>
+#include<conio.h>
+#define max 100
+void main()
+{
+	//... create stack
+	char list[max],data;
+	int top,option,reply,i;
+	//... init stack
+	top = -1;
+	clrscr();
+	do
+	{
+		printf("\n 1. Add a book");
+		printf("\n 2. Remove a book");
+		printf("\n 3. Display list");
+		printf("\n 4. exit");
+		printf("\nSelect proper option : ");
+		scanf("%d",&option);
+		switch(option)
+		{
+			case 1 : // push/add_book
+				reply = push(list,&top,&data);
+				if( reply == -1 )
+					printf("\nList is full");
+				else
+				{
+
+				printf("\n Enter a book name : ");
+				scanf("%s",&data);
+				printf("\n Book added");
+				}
+
+				break;
+			case 2 : // pop/remove
+				reply = pop ( list,&top,&data);
+				if( reply == - 1)
+					printf("\nList is empty");
+				else
+					printf("\n %s is removed",data);
+				break;
+			case 3 : //display list
+				  if(top==-1)
+				     {
+				       printf("\nList is empty!!");
+				     }
+				  else
+				     {
+				       printf("\nList is...\n");
+				  for(i=top;i>=0;--i)
+				  printf("%s\n",list[i]);
+				     }
+			case 4 : exit(0);
+		} // switch
+	}while(1);
+} // main
+
+int push( char list[max],int *top, char *data)
+{
+	if( *top == max -1 )
+		return(-1);
+	else
+	{
+		*top = *top + 1;
+		list[*top] = *data;
+		return(1);
+	} // else
+} // push
+
+int pop( int list[max], int *top,char *data)
+{
+	if( *top == -1 )
+		return(-1);
+	else
+	{
+		*data = list[*top];
+		*top = *top - 1;
+		return(1);
+	} //else
+} // pop
